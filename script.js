@@ -1,156 +1,98 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const html = document.documentElement;
-  const darkModeToggle = document.getElementById('darkModeToggle');
-  const themeIcon = document.getElementById('themeIcon');
-  const menuToggle = document.getElementById('menuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const replayBtn = document.getElementById('replayBtn');
-  const progressBar = document.getElementById('progress');
-  const yearEl = document.getElementById('year');
-  const contactForm = document.getElementById('contactForm');
-  const formFeedback = document.getElementById('formFeedback');
+// =====================================================
+ // FRESHFOLD LAUNDRY CO. - MIDTERM PRACTICAL
+ // =====================================================
+gsap.registerPlugin(ScrollTrigger);
+// –– B1: DARK MODE TOGGLE ––
+const darkModeToggle = document.querySelector("#darkModeToggle");
+if (darkModeToggle) {
+ darkModeToggle.addEventListener("click", () => {
+ document.documentElement.classList.toggle("dark");
+ });
+ }
+// –– D1 + D2: PAGE-LOAD INTRO TIMELINE ––
+const introTimeline = gsap.timeline({
+ defaults: {
+ duration: 0.7,
+ ease: "power2.out"
+  // Smooth easing makes the entrance feel natural.
+ }
+ });
+introTimeline
+ .from(".hero-title", {
+ y: 50,
+ opacity: 0
+ })
+ .from(".hero-description", {
+ y: 30,
+ opacity: 0
+ }, "-=0.4")
+ // Overlaps with the title animation for a faster entrance.
+ .from(".hero-button", {
+ scale: 0.8,
+ opacity: 0,
+ stagger: 0.2
+ }, "-=0.3")
+ // Stagger creates a sequence between buttons.
+ .from(".hero-image", {
+ x: 50,
+ opacity: 0,
+ ease: "back.out(1.4)"
+ // A slight bounce adds emphasis to the image.
+ }, "-=0.4");
+// –– D3: CLICK INTERACTION ––
+const replayBtn = document.querySelector("#replayBtn");
+if (replayBtn) {
+ replayBtn.addEventListener("click", () => {
+ introTimeline.restart();
+ });
+ }
+// –– E1 + E2 + E3: SCROLL EFFECTS AND REDUCED MOTION ––
+gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+// E1: SCROLL REVEALS
+// Each .reveal element gets its own ScrollTrigger.
 
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
 
-  const setTheme = (isDark) => {
-    html.classList.toggle('dark', isDark);
-    if (themeIcon) {
-      themeIcon.textContent = isDark ? '☀️' : '🌙';
-    }
-    if (darkModeToggle) {
-      darkModeToggle.setAttribute('aria-pressed', String(isDark));
-    }
-    localStorage.setItem('freshfold-theme', isDark ? 'dark' : 'light');
-  };
-
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const savedTheme = localStorage.getItem('freshfold-theme');
-  setTheme(savedTheme ? savedTheme === 'dark' : prefersDark);
-
-  if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', () => {
-      const isDark = !html.classList.contains('dark');
-      setTheme(isDark);
-    });
-  }
-
-  if (menuToggle && mobileMenu) {
-    const closeMenu = () => {
-      mobileMenu.classList.add('hidden');
-      menuToggle.setAttribute('aria-expanded', 'false');
-    };
-
-    menuToggle.addEventListener('click', () => {
-      const isOpen = !mobileMenu.classList.contains('hidden');
-      mobileMenu.classList.toggle('hidden');
-      menuToggle.setAttribute('aria-expanded', String(!isOpen));
-    });
-
-    mobileMenu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', closeMenu);
-    });
-  }
-
-  const heroItems = document.querySelectorAll('.hero-item');
-  const revealHero = () => {
-    if (!heroItems.length) return;
-
-    if (window.gsap) {
-      gsap.set(heroItems, { opacity: 0, y: 24 });
-      gsap.to(heroItems, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power2.out',
-        stagger: 0.15,
-      });
-      return;
-    }
-
-    heroItems.forEach((item) => {
-      item.style.opacity = '1';
-      item.style.transform = 'translateY(0)';
-    });
-  };
-
-  if (replayBtn) {
-    replayBtn.addEventListener('click', revealHero);
-  }
-
-  if (window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.utils.toArray('.reveal').forEach((section) => {
-      gsap.fromTo(
-        section,
-        { opacity: 0, y: 40 },
+gsap.utils.toArray(".reveal").forEach((element) => {
+    gsap.fromTo(element,
         {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 80%',
-          },
+            y: 40,
+            opacity: 0
+        },
+        {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: element,
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+            }
         }
-      );
-    });
-  } else {
-    document.querySelectorAll('.reveal').forEach((section) => {
-      section.style.opacity = '1';
-      section.style.transform = 'translateY(0)';
-    });
-  }
-
-  if (progressBar) {
-    const updateProgressBar = () => {
-      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
-      progressBar.style.transform = `scaleX(${Math.min(Math.max(progress, 0), 1)})`;
-    };
-
-    updateProgressBar();
-    window.addEventListener('scroll', updateProgressBar, { passive: true });
-    window.addEventListener('resize', updateProgressBar);
-  }
-
-  if (contactForm && formFeedback) {
-    contactForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-
-      const formData = new FormData(contactForm);
-      const name = String(formData.get('name') || '').trim();
-      const email = String(formData.get('email') || '').trim();
-      const message = String(formData.get('message') || '').trim();
-
-      formFeedback.classList.add('hidden');
-      formFeedback.classList.remove('text-red-500');
-      formFeedback.classList.remove('text-green-600');
-
-      if (!name || !email || !message) {
-        formFeedback.textContent = 'Please complete all fields before sending your message.';
-        formFeedback.classList.remove('hidden');
-        formFeedback.classList.add('text-red-500');
-        return;
-      }
-
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(email)) {
-        formFeedback.textContent = 'Please enter a valid email address.';
-        formFeedback.classList.remove('hidden');
-        formFeedback.classList.add('text-red-500');
-        return;
-      }
-
-      formFeedback.textContent = `Thanks, ${name}! Your message has been sent successfully.`;
-      formFeedback.classList.remove('hidden');
-      formFeedback.classList.add('text-green-600');
-      contactForm.reset();
-    });
-  }
-
-  revealHero();
+    );
 });
+
+
+
+
+// E2: SCROLL-LINKED PROGRESS BAR
+
+
+gsap.to("#progressBar", {
+    scaleX: 1,
+    transformOrigin: "left center",
+    ease: "none",
+    scrollTrigger: {
+        trigger: document.body,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true
+    }
+});
+});
+// For visitors who prefer reduced motion, content remains visible
+ // because scroll animations are not applied to them.
+
+
+
+

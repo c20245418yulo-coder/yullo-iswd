@@ -1,22 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="en" class="">
+
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="FreshFold Laundry Co. offers convenient, affordable laundry care.">
+
+    <meta name="description" content="FreshFold Laundry Co. offers convenient, affordable laundry care for your everyday needs.">
+
 
     <title>FreshFold Laundry Co. | Laundry Made Simple</title>
 
-    <!-- STARTER HEAD: KEEP THESE TAGS -->
+
+    <!-- Tailwind CSS: Required version -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+
+    <!-- Design Tokens and Reusable Components -->
     <style type="text/tailwindcss">
         @custom-variant dark (&:where(.dark, .dark *));
 
-        /* C2: COLOR PALETTE */
+
         @theme {
             --color-fresh-bg: #F8FAFC;
             --color-fresh-navy: #17324D;
@@ -25,291 +30,869 @@
             --color-fresh-muted: #475569;
         }
 
-        /* A5: REUSABLE COMPONENTS */
+
         @layer components {
             .btn-primary {
-                @apply inline-flex items-center justify-center rounded-xl bg-fresh-navy px-6 py-3 font-semibold text-white hover:bg-blue-800 dark:bg-fresh-blue dark:text-slate-950;
+                @apply inline-flex items-center justify-center rounded-xl bg-fresh-navy px-6 py-3 font-semibold text-white hover:bg-blue-800 focus:outline-2 focus:outline-offset-2 focus:outline-sky-500 dark:bg-fresh-blue dark:text-slate-950 dark:hover:bg-sky-300;
             }
+
 
             .section-label {
                 @apply mb-3 text-sm font-bold uppercase tracking-[0.2em] text-blue-700 dark:text-sky-300;
             }
+
 
             .service-card {
                 @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800;
             }
         }
     </style>
-    <!-- END STARTER HEAD -->
-
 </head>
+
 
 <body class="bg-fresh-bg text-slate-900 dark:bg-fresh-dark dark:text-slate-100">
 
-    <!-- E2: SCROLL PROGRESS BAR -->
-    <div id="progress"
-         class="fixed left-0 top-0 z-[100] h-1 w-full origin-left scale-x-0 bg-fresh-blue"
-         aria-hidden="true">
+
+    <!-- Scroll Progress Bar -->
+    <div
+        id="progress"
+        class="fixed left-0 top-0 z-[100] h-1 w-full origin-left scale-x-0 bg-fresh-blue"
+        aria-hidden="true">
     </div>
 
-    <!-- HEADER / NAVIGATION -->
-    <header>
-        <nav aria-label="Main navigation">
 
-            <a href="#home" id="brand">
-                FreshFold.
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md dark:border-slate-700 dark:bg-slate-900/95">
+
+
+        <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-8"
+             aria-label="Main navigation">
+
+
+            <a href="#home" id="brand"
+               class="text-xl font-extrabold tracking-tight text-fresh-navy dark:text-white md:text-2xl">
+                FreshFold<span class="text-sky-500">.</span>
             </a>
 
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
 
-            <!-- DARK MODE -->
-            <button id="darkModeToggle" type="button">
-                <span id="themeIcon">🌙</span>
-            </button>
+            <div class="flex items-center gap-3">
 
-            <!-- MOBILE MENU -->
-            <button id="menuToggle" type="button">
-                ☰
-            </button>
 
+                <ul class="hidden items-center gap-6 text-sm font-semibold md:flex">
+                    <li><a class="nav-link rounded hover:text-blue-600 dark:hover:text-sky-300" href="#about">About</a></li>
+                    <li><a class="nav-link rounded hover:text-blue-600 dark:hover:text-sky-300" href="#services">Services</a></li>
+                    <li><a class="nav-link rounded hover:text-blue-600 dark:hover:text-sky-300" href="#features">Features</a></li>
+                    <li><a class="nav-link rounded hover:text-blue-600 dark:hover:text-sky-300" href="#contact">Contact</a></li>
+                </ul>
+
+
+                <button id="darkModeToggle"
+                        type="button"
+                        aria-label="Toggle dark mode"
+                        aria-pressed="false"
+                        class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-lg hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:hover:bg-slate-700">
+                    <span id="themeIcon" aria-hidden="true">🌙</span>
+                </button>
+
+
+                <button id="menuToggle"
+                        type="button"
+                        aria-label="Open navigation menu"
+                        aria-expanded="false"
+                        aria-controls="mobileMenu"
+                        class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-lg dark:border-slate-600 dark:bg-slate-800 md:hidden">
+                    ☰
+                </button>
+            </div>
         </nav>
 
-        <div id="mobileMenu" class="hidden">
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#contact">Contact</a></li>
+
+        <!-- Mobile Navigation -->
+        <div id="mobileMenu" class="hidden border-t border-slate-200 bg-white px-5 py-4 dark:border-slate-700 dark:bg-slate-900 md:hidden">
+            <ul class="flex flex-col gap-4 font-semibold">
+                <li><a class="nav-link block rounded hover:text-blue-600 dark:hover:text-sky-300" href="#about">About</a></li>
+                <li><a class="nav-link block rounded hover:text-blue-600 dark:hover:text-sky-300" href="#services">Services</a></li>
+                <li><a class="nav-link block rounded hover:text-blue-600 dark:hover:text-sky-300" href="#features">Features</a></li>
+                <li><a class="nav-link block rounded hover:text-blue-600 dark:hover:text-sky-300" href="#contact">Contact</a></li>
             </ul>
         </div>
+
+
     </header>
 
-    <!-- MAIN CONTENT -->
+
+
+
     <main>
 
-        <!-- D1: HERO SECTION -->
-        <section id="home" class="hero-section">
 
-            <div>
-                <p class="hero-item">Local Laundry Care</p>
+        <!-- HERO SECTION -->
+        <section id="home" class="hero-section px-5 py-16 md:px-8 md:py-20">
 
-                <h1 class="hero-item">
-                    Laundry day, made simple.
-                </h1>
 
-                <p class="hero-item">
-                    More time for what matters.
-                    Let FreshFold handle your routine wash
-                    with simple, reliable, and affordable care.
+            <div class="mx-auto max-w-3xl text-center">
+                <p class="hero-item mb-5 inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
+                    Local Laundry Care
                 </p>
 
-                <div class="hero-item">
+
+                <h1 class="hero-item mb-6 text-4xl font-semibold leading-tight tracking-[-0.04em] text-fresh-navy dark:text-white sm:text-5xl lg:text-7xl">
+                    Laundry day,
+                    <span class="text-slate-500 dark:text-slate-300">made simple.</span>
+                </h1>
+
+
+                <p class="hero-item mx-auto mb-8 max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300 md:text-lg">
+                    More time for what matters. Let FreshFold handle your routine wash with simple, reliable, and affordable care.
+                </p>
+
+
+                <div class="hero-item flex flex-wrap items-center justify-center gap-4">
                     <a href="#contact" class="btn-primary">
                         Book a Service
                     </a>
 
-                    <a href="#services">
+
+                    <a href="#services" class="rounded-full border border-slate-300 px-5 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800">
                         View Services
                     </a>
                 </div>
 
-                <div class="hero-item">
+
+                <div class="hero-item mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500 dark:text-slate-400">
                     <span>Careful handling</span>
                     <span>Clear pricing</span>
                     <span>Convenient service</span>
                 </div>
-
-                <button id="replayBtn" type="button">
-                    Replay Intro
-                </button>
             </div>
-
         </section>
 
-        <!-- E1: ABOUT SECTION -->
-        <section id="about" class="reveal">
 
-            <p class="section-label">About FreshFold</p>
 
-            <h2>We make everyday laundry easier.</h2>
 
-            <p>
-                FreshFold is a sample local laundry business
-                created to make clothing care more convenient
-                for students, workers, and families.
-            </p>
+        <!-- ABOUT SECTION -->
+        <section id="about" class="reveal border-y border-slate-200 bg-white px-5 py-20 dark:border-slate-700 dark:bg-slate-900 md:px-8 md:py-24">
 
-            <div>
-                <article>
-                    <h3>🫧 Fresh Care</h3>
-                    <p>Thoughtful care for everyday clothing.</p>
-                </article>
 
-                <article>
-                    <h3>⏱️ More Time</h3>
-                    <p>Spend less time on laundry chores.</p>
-                </article>
+            <div class="mx-auto grid max-w-7xl gap-10 md:grid-cols-2 md:items-center">
 
-                <article>
-                    <h3>💧 Simple Service</h3>
-                    <p>Easy-to-understand service options.</p>
-                </article>
 
-                <article>
-                    <h3>🤝 Local Support</h3>
-                    <p>A convenient neighborhood solution.</p>
-                </article>
+                <div>
+                    <p class="section-label">About FreshFold</p>
+
+
+                    <h2 class="mb-6 text-3xl font-extrabold tracking-tight md:text-5xl">
+                        We make everyday laundry easier.
+                    </h2>
+
+
+                    <p class="max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300">
+                        FreshFold is a sample local laundry business created to make clothing care more convenient for students, workers, and families. Our goal is to provide dependable service, straightforward prices, and a friendlier laundry experience.
+                    </p>
+
+
+                    <a href="#services" class="btn-primary mt-8">
+                        Discover Our Services
+                    </a>
+                </div>
+
+
+                <div class="grid grid-cols-2 gap-4">
+
+
+                    <div class="rounded-2xl bg-sky-50 p-6 dark:bg-slate-800">
+                        <p class="mb-3 text-3xl" aria-hidden="true">🫧</p>
+                        <h3 class="font-bold">Fresh Care</h3>
+                        <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                            Thoughtful care for everyday clothing.
+                        </p>
+                    </div>
+
+
+                    <div class="mt-8 rounded-2xl bg-slate-100 p-6 dark:bg-slate-800">
+                        <p class="mb-3 text-3xl" aria-hidden="true">⏱️</p>
+                        <h3 class="font-bold">More Time</h3>
+                        <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                            Spend less time on laundry chores.
+                        </p>
+                    </div>
+
+
+                    <div class="rounded-2xl bg-slate-100 p-6 dark:bg-slate-800">
+                        <p class="mb-3 text-3xl" aria-hidden="true">💧</p>
+                        <h3 class="font-bold">Simple Service</h3>
+                        <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                            Easy-to-understand service options.
+                        </p>
+                    </div>
+
+
+                    <div class="mt-8 rounded-2xl bg-sky-50 p-6 dark:bg-slate-800">
+                        <p class="mb-3 text-3xl" aria-hidden="true">🤝</p>
+                        <h3 class="font-bold">Local Support</h3>
+                        <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                            A convenient neighborhood solution.
+                        </p>
+                    </div>
+
+
+                </div>
             </div>
-
         </section>
+
+
+
 
         <!-- SERVICES SECTION -->
-        <section id="services" class="reveal">
+        <section id="services" class="reveal px-5 py-20 md:px-8 md:py-24">
 
-            <p class="section-label">What We Do</p>
 
-            <h2>Services for your everyday needs.</h2>
+            <div class="mx-auto max-w-7xl">
 
-            <div>
 
-                <article class="service-card">
-                    <h3>🫧 Wash Only</h3>
-                    <p>A simple wash service for everyday clothes.</p>
-                    <p>₱30 / kg</p>
-                </article>
+                <div class="mb-12 max-w-2xl">
+                    <p class="section-label">What We Do</p>
 
-                <article class="service-card">
-                    <h3>🌬️ Wash & Dry</h3>
-                    <p>Get clothes washed and dried for convenience.</p>
-                    <p>₱50 / kg</p>
-                </article>
 
-                <article class="service-card">
-                    <h3>👕 Wash, Dry & Fold</h3>
-                    <p>Have your clothes washed, dried, and folded.</p>
-                    <p>₱60 / kg</p>
-                </article>
+                    <h2 class="mb-5 text-3xl font-extrabold tracking-tight md:text-5xl">
+                        Services for your everyday needs.
+                    </h2>
 
+
+                    <p class="leading-7 text-slate-600 dark:text-slate-300">
+                        Choose the laundry care that works best for you. These sample prices can be adjusted to match a real business.
+                    </p>
+                </div>
+
+
+                <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+
+                    <article class="service-card">
+                        <div class="mb-5 flex items-center justify-between">
+                            <span class="text-4xl" aria-hidden="true">🫧</span>
+                            <span class="rounded-full bg-sky-100 px-3 py-1 text-xs font-bold text-blue-900 dark:bg-sky-950 dark:text-sky-200">POPULAR</span>
+                        </div>
+                        <h3 class="text-xl font-bold">Wash Only</h3>
+                        <p class="mt-3 leading-7 text-slate-600 dark:text-slate-300">
+                            A simple wash service for everyday clothes.
+                        </p>
+                        <p class="mt-6 text-2xl font-extrabold text-blue-700 dark:text-sky-300">
+                            ₱30 <span class="text-sm font-medium text-slate-500 dark:text-slate-400">/ kg</span>
+                        </p>
+                    </article>
+
+
+                    <article class="service-card">
+                        <div class="mb-5 text-4xl" aria-hidden="true">🌬️</div>
+                        <h3 class="text-xl font-bold">Wash & Dry</h3>
+                        <p class="mt-3 leading-7 text-slate-600 dark:text-slate-300">
+                            Get clothes washed and dried for convenience.
+                        </p>
+                        <p class="mt-6 text-2xl font-extrabold text-blue-700 dark:text-sky-300">
+                            ₱50 <span class="text-sm font-medium text-slate-500 dark:text-slate-400">/ kg</span>
+                        </p>
+                    </article>
+
+
+                    <article class="service-card">
+                        <div class="mb-5 text-4xl" aria-hidden="true">👕</div>
+                        <h3 class="text-xl font-bold">Wash, Dry & Fold</h3>
+                        <p class="mt-3 leading-7 text-slate-600 dark:text-slate-300">
+                            Have your clothes washed, dried, and neatly folded.
+                        </p>
+                        <p class="mt-6 text-2xl font-extrabold text-blue-700 dark:text-sky-300">
+                            ₱60 <span class="text-sm font-medium text-slate-500 dark:text-slate-400">/ kg</span>
+                        </p>
+                    </article>
+
+
+                </div>
             </div>
-
         </section>
+
+
+
 
         <!-- FEATURES / WORK SECTION -->
-        <section id="features" class="reveal">
+        <section id="features" class="reveal border-y border-slate-200 bg-white px-5 py-20 dark:border-slate-700 dark:bg-slate-900 md:px-8 md:py-24">
 
-            <p class="section-label">Why FreshFold</p>
 
-            <h2>A better laundry experience.</h2>
+            <div class="mx-auto max-w-7xl">
 
-            <div>
 
-                <article>
-                    <h3>🧺 Laundry without the hassle</h3>
-                    <p>Convenient laundry services for your daily routine.</p>
-                </article>
+                <div class="mb-12 text-center">
+                    <p class="section-label">Why FreshFold</p>
 
-                <article>
-                    <h3>💰 Clear Pricing</h3>
-                    <p>Know your service prices before booking.</p>
-                </article>
 
-                <article>
-                    <h3>📅 Booking Request</h3>
-                    <p>Send your details through our contact form.</p>
-                </article>
+                    <h2 class="text-3xl font-extrabold tracking-tight md:text-5xl">
+                        A better laundry experience.
+                    </h2>
 
-                <article>
-                    <h3>📱 Responsive Design</h3>
-                    <p>Browse on mobile, tablet, or computer.</p>
-                </article>
 
-                <article>
-                    <h3>🌙 Dark Mode</h3>
-                    <p>Switch between light and dark themes.</p>
-                </article>
+                    <p class="mx-auto mt-5 max-w-2xl leading-7 text-slate-600 dark:text-slate-300">
+                        Simple features designed around your time, comfort, and everyday routine.
+                    </p>
+                </div>
 
+
+                <!-- Bento Grid -->
+                <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+
+
+                    <article class="feature-card rounded-3xl bg-fresh-navy p-8 text-white md:col-span-2">
+                        <span class="mb-6 block text-5xl" aria-hidden="true">🧺</span>
+
+
+                        <h3 class="mb-4 text-2xl font-extrabold md:text-3xl">
+                            Laundry without the hassle.
+                        </h3>
+
+
+                        <p class="max-w-xl leading-7 text-slate-200">
+                            Select a service that matches your needs and plan your laundry around your day.
+                        </p>
+                    </article>
+
+
+                    <article class="feature-card rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-slate-700 dark:bg-slate-800">
+                        <span class="mb-6 block text-5xl" aria-hidden="true">💰</span>
+
+
+                        <h3 class="mb-3 text-xl font-extrabold">Clear Pricing</h3>
+
+
+                        <p class="leading-7 text-slate-600 dark:text-slate-300">
+                            See sample service prices before choosing your laundry package.
+                        </p>
+                    </article>
+
+
+                    <article class="feature-card rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-slate-700 dark:bg-slate-800">
+                        <span class="mb-6 block text-5xl" aria-hidden="true">📅</span>
+
+
+                        <h3 class="mb-3 text-xl font-extrabold">Booking Request</h3>
+
+
+                        <p class="leading-7 text-slate-600 dark:text-slate-300">
+                            Fill in your details and preferred date through our contact form.
+                        </p>
+                    </article>
+
+
+                    <article class="feature-card rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-slate-700 dark:bg-slate-800">
+                        <span class="mb-6 block text-5xl" aria-hidden="true">📱</span>
+
+
+                        <h3 class="mb-3 text-xl font-extrabold">Responsive Design</h3>
+
+
+                        <p class="leading-7 text-slate-600 dark:text-slate-300">
+                            Browse the website on your phone, tablet, or computer.
+                        </p>
+                    </article>
+
+
+                    <article class="feature-card rounded-3xl bg-sky-100 p-8 dark:bg-sky-950">
+                        <span class="mb-6 block text-5xl" aria-hidden="true">🌙</span>
+
+
+                        <h3 class="mb-3 text-xl font-extrabold text-slate-900 dark:text-white">
+                            Your Theme, Your Choice
+                        </h3>
+
+
+                        <p class="leading-7 text-slate-700 dark:text-slate-200">
+                            Switch between light and dark themes whenever you like.
+                        </p>
+                    </article>
+
+
+                </div>
             </div>
-
         </section>
+
+
+
 
         <!-- CONTACT SECTION -->
-        <section id="contact" class="reveal">
+        <section id="contact" class="reveal px-5 py-20 md:px-8 md:py-24">
 
-            <p class="section-label">Get in Touch</p>
 
-            <h2>Let's make laundry easier.</h2>
+            <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-2">
 
-            <p>
-                Have a question about our services?
-                Send us a message.
-            </p>
 
-            <div>
-                <h3>📍 Location</h3>
-                <p>Your Local Area, Philippines</p>
+                <div>
+                    <p class="section-label">Get in Touch</p>
 
-                <h3>🕒 Business Hours</h3>
-                <p>Monday–Saturday, 8:00 AM–7:00 PM</p>
+
+                    <h2 class="mb-6 text-3xl font-extrabold tracking-tight md:text-5xl">
+                        Let's make laundry easier.
+                    </h2>
+
+
+                    <p class="mb-8 max-w-lg leading-8 text-slate-600 dark:text-slate-300">
+                        Have a question about our services? Send us a message using the form. We would be happy to hear from you.
+                    </p>
+
+
+                    <div class="space-y-5">
+
+
+                        <div class="flex items-start gap-4">
+                            <span class="text-2xl" aria-hidden="true">📍</span>
+                            <div>
+                                <h3 class="font-bold">Location</h3>
+                                <p class="mt-1 text-slate-600 dark:text-slate-300">
+                                    Your Local Area, Philippines
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="flex items-start gap-4">
+                            <span class="text-2xl" aria-hidden="true">🕒</span>
+                            <div>
+                                <h3 class="font-bold">Business Hours</h3>
+                                <p class="mt-1 text-slate-600 dark:text-slate-300">
+                                    Monday–Saturday, 8:00 AM–7:00 PM
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <p class="text-sm text-slate-500 dark:text-slate-400">
+                            Business information is illustrative and should be updated before publication.
+                        </p>
+
+
+                    </div>
+                </div>
+
+
+
+
+                <!-- Contact Form: Layout Only -->
+                <form id="contactForm"
+                      class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800 md:p-8">
+
+
+                    <div class="mb-6">
+                        <label for="name" class="mb-2 block font-semibold">
+                            Full Name
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            autocomplete="name"
+                            placeholder="Enter your full name"
+                            required
+                            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-500 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-200 dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-400 dark:focus:ring-sky-900"
+                        >
+                    </div>
+
+
+                    <div class="mb-6">
+                        <label for="email" class="mb-2 block font-semibold">
+                            Email Address
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            autocomplete="email"
+                            placeholder="you@example.com"
+                            required
+                            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-500 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-200 dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-400 dark:focus:ring-sky-900"
+                        >
+                    </div>
+
+
+                    <div class="mb-6">
+                        <label for="message" class="mb-2 block font-semibold">
+                            Message
+                        </label>
+
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="5"
+                            placeholder="How can we help you?"
+                            required
+                            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-500 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-200 dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-400 dark:focus:ring-sky-900"
+                        ></textarea>
+                    </div>
+
+
+                    <button type="submit" class="btn-primary w-full">
+                        Send Message →
+                    </button>
+
+
+                    <p id="formFeedback"
+                       class="mt-4 hidden rounded-xl bg-sky-50 p-4 text-sm text-blue-900 dark:bg-sky-950 dark:text-sky-100"
+                       role="status"
+                       aria-live="polite">
+                    </p>
+
+
+                    <p class="mt-4 text-xs leading-5 text-slate-500 dark:text-slate-400">
+                        Demonstration form only. Your message is not sent or stored.
+                    </p>
+
+
+                </form>
             </div>
-
-            <!-- CONTACT FORM -->
-            <form id="contactForm">
-
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name"
-                       placeholder="Enter your full name" required>
-
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email"
-                       placeholder="you@example.com" required>
-
-                <label for="message">Message</label>
-                <textarea id="message" name="message"
-                          rows="5" required></textarea>
-
-                <button type="submit">
-                    Send Message
-                </button>
-
-                <p id="formFeedback" class="hidden"
-                   role="status" aria-live="polite">
-                </p>
-
-            </form>
-
         </section>
+
 
     </main>
 
+
+
+
     <!-- FOOTER -->
-    <footer>
+    <footer class="border-t border-slate-200 bg-white px-5 py-8 dark:border-slate-700 dark:bg-slate-900 md:px-8">
 
-        <a href="#home">FreshFold.</a>
 
-        <p>Fresh clothes. Less stress.</p>
+        <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
 
-        <p>
-            © <span id="year"></span>
-            FreshFold Laundry Co. School project.
-        </p>
 
-        <a href="#home">Back to top ↑</a>
+            <div>
+                <a href="#home" class="text-xl font-extrabold text-fresh-navy dark:text-white">
+                    FreshFold<span class="text-sky-500">.</span>
+                </a>
 
+
+                <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
+                    Fresh clothes. Less stress.
+                </p>
+            </div>
+
+
+            <p class="text-sm text-slate-600 dark:text-slate-300">
+                © <span id="year"></span> FreshFold Laundry Co. School project.
+            </p>
+
+
+            <a href="#home" class="font-semibold text-blue-700 hover:underline dark:text-sky-300">
+                Back to top ↑
+            </a>
+
+
+        </div>
     </footer>
 
-    <!-- GSAP: LOAD FIRST -->
+
+
+
+    <!-- Required GSAP Version -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 
-    <!-- SCROLLTRIGGER: LOAD SECOND -->
+
+    <!-- Required ScrollTrigger Version: Load after GSAP -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 
-    <!-- YOUR JAVASCRIPT: LOAD LAST -->
-    <script src="script.js"></script>
+
+
+
+    <!-- Your JavaScript: Last, before closing body -->
+    <script>
+        // --------------------------------------------------
+        // 1. DARK MODE
+        // --------------------------------------------------
+
+
+        const html = document.documentElement;
+        const darkModeToggle = document.querySelector("#darkModeToggle");
+        const themeIcon = document.querySelector("#themeIcon");
+
+
+        function applyTheme(isDark) {
+            html.classList.toggle("dark", isDark);
+            darkModeToggle.setAttribute("aria-pressed", String(isDark));
+            themeIcon.textContent = isDark ? "Light" : "DarkMode";
+            localStorage.setItem("freshfold-theme", isDark ? "dark" : "light");
+        }
+
+
+        const savedTheme = localStorage.getItem("freshfold-theme");
+
+
+        applyTheme(savedTheme === "dark");
+
+
+        darkModeToggle.addEventListener("click", function () {
+            const isDark = !html.classList.contains("dark");
+            applyTheme(isDark);
+        });
+
+
+
+
+        // --------------------------------------------------
+        // 2. MOBILE NAVIGATION
+        // --------------------------------------------------
+
+
+        const menuToggle = document.querySelector("#menuToggle");
+        const mobileMenu = document.querySelector("#mobileMenu");
+
+
+        menuToggle.addEventListener("click", function () {
+            const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+
+
+            menuToggle.setAttribute("aria-expanded", String(!isExpanded));
+            menuToggle.setAttribute(
+                "aria-label",
+                isExpanded ? "Open navigation menu" : "Close navigation menu"
+            );
+
+
+            mobileMenu.classList.toggle("hidden", isExpanded);
+            menuToggle.textContent = isExpanded ? "☰" : "✕";
+        });
+
+
+        document.querySelectorAll("#mobileMenu a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                mobileMenu.classList.add("hidden");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open navigation menu");
+                menuToggle.textContent = "☰";
+            });
+        });
+
+
+
+
+        // --------------------------------------------------
+        // 3. GSAP AND SCROLLTRIGGER
+        // --------------------------------------------------
+
+
+        gsap.registerPlugin(ScrollTrigger);
+
+
+        const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const progressBar = document.querySelector("#progress");
+
+
+        let introTimeline = null;
+        let scrollAnimations = [];
+        let progressAnimation = null;
+
+
+        function clearAnimations() {
+            if (introTimeline) {
+                introTimeline.kill();
+                introTimeline = null;
+            }
+
+
+            scrollAnimations.forEach(function (animation) {
+                animation.scrollTrigger?.kill();
+                animation.kill();
+            });
+
+
+            scrollAnimations = [];
+
+
+            if (progressAnimation) {
+                progressAnimation.scrollTrigger?.kill();
+                progressAnimation.kill();
+                progressAnimation = null;
+            }
+
+
+            ScrollTrigger.getAll().forEach(function (trigger) {
+                trigger.kill();
+            });
+
+
+            gsap.set(".hero-item", {
+                clearProps: "all"
+            });
+
+
+            gsap.set(".reveal", {
+                clearProps: "all"
+            });
+
+
+            gsap.set("#progress", {
+                scaleX: 0
+            });
+        }
+
+
+
+
+        function createAnimations(reducedMotion) {
+            clearAnimations();
+
+
+            // Reduced motion keeps every section immediately visible.
+            if (reducedMotion) {
+                gsap.set(".hero-item, .reveal", {
+                    clearProps: "all",
+                    opacity: 1,
+                    y: 0
+                });
+
+
+                gsap.set("#progress", {
+                    scaleX: 0
+                });
+
+
+                return;
+            }
+
+
+            // Deliberate easing: power3.out creates a smooth entrance without an abrupt stop.
+            introTimeline = gsap.timeline({
+                defaults: {
+                    duration: 0.65,
+                    ease: "power3.out"
+                }
+            });
+
+
+            introTimeline
+                .from("#brand", {
+                    y: -15,
+                    opacity: 0
+                })
+                .from(".hero-item", {
+                    y: 25,
+                    opacity: 0,
+                    stagger: 0.12
+                }, "-=0.35")
+                .from(".nav-link", {
+                    y: -10,
+                    opacity: 0,
+                    stagger: 0.08
+                }, "<0.1");
+
+
+
+
+            const replayBtn = document.querySelector("#replayBtn");
+            if (replayBtn) {
+                replayBtn.onclick = function () {
+                    introTimeline.restart();
+                };
+            }
+
+
+            // Reveal every section below the hero.
+            gsap.utils.toArray(".reveal").forEach(function (section) {
+                const animation = gsap.fromTo(
+                    section,
+                    {
+                        y: 35,
+                        opacity: 0
+                    },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse"
+                        }
+                    }
+                );
+
+
+                scrollAnimations.push(animation);
+            });
+
+
+
+
+            // Scroll-linked progress indicator.
+            progressAnimation = gsap.to("#progress", {
+                scaleX: 1,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: document.body,
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: true
+                }
+            });
+
+
+            ScrollTrigger.refresh();
+        }
+
+
+
+
+        // Rebuild animations when reduced-motion preference changes.
+        function updateMotionPreference() {
+            createAnimations(motionQuery.matches);
+        }
+
+
+        motionQuery.addEventListener("change", updateMotionPreference);
+
+
+        createAnimations(motionQuery.matches);
+
+
+
+
+        // --------------------------------------------------
+        // 4. CONTACT FORM LAYOUT DEMONSTRATION
+        // --------------------------------------------------
+
+
+        const contactForm = document.querySelector("#contactForm");
+        const formFeedback = document.querySelector("#formFeedback");
+
+
+        contactForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+
+            const customerName = document.querySelector("#name").value.trim();
+
+
+            formFeedback.textContent =
+                "Thank you, " + customerName +
+                "! This is a demo form. No message has been sent.";
+
+
+            formFeedback.classList.remove("hidden");
+        });
+
+
+
+
+        // --------------------------------------------------
+        // 5. FOOTER YEAR
+        // --------------------------------------------------
+
+
+        document.querySelector("#year").textContent = new Date().getFullYear();
+    </script>
+
 
 </body>
 </html>
+
+
