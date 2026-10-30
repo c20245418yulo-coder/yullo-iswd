@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="FreshFold Laundry Co. offers convenient, affordable laundry care.">
+
+    <title>FreshFold Laundry Co. | Laundry Made Simple</title>
+
+    <!-- STARTER HEAD: KEEP THESE TAGS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+
+        /* C2: COLOR PALETTE */
+        @theme {
+            --color-fresh-bg: #F8FAFC;
+            --color-fresh-navy: #17324D;
+            --color-fresh-blue: #38BDF8;
+            --color-fresh-dark: #0B1726;
+            --color-fresh-muted: #475569;
+        }
+
+        /* A5: REUSABLE COMPONENTS */
+        @layer components {
+            .btn-primary {
+                @apply inline-flex items-center justify-center rounded-xl bg-fresh-navy px-6 py-3 font-semibold text-white hover:bg-blue-800 dark:bg-fresh-blue dark:text-slate-950;
+            }
+
+            .section-label {
+                @apply mb-3 text-sm font-bold uppercase tracking-[0.2em] text-blue-700 dark:text-sky-300;
+            }
+
+            .service-card {
+                @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800;
+            }
+        }
+    </style>
+    <!-- END STARTER HEAD -->
+
+</head>
+
+<body class="bg-fresh-bg text-slate-900 dark:bg-fresh-dark dark:text-slate-100">
+
+    <!-- E2: SCROLL PROGRESS BAR -->
+    <div id="progress"
+         class="fixed left-0 top-0 z-[100] h-1 w-full origin-left scale-x-0 bg-fresh-blue"
+         aria-hidden="true">
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header>
+        <nav aria-label="Main navigation">
+
+            <a href="#home" id="brand">
+                FreshFold.
+            </a>
+
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <!-- DARK MODE -->
+            <button id="darkModeToggle" type="button">
+                <span id="themeIcon">🌙</span>
+            </button>
+
+            <!-- MOBILE MENU -->
+            <button id="menuToggle" type="button">
+                ☰
+            </button>
+
+        </nav>
+
+        <div id="mobileMenu" class="hidden">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- D1: HERO SECTION -->
+        <section id="home" class="hero-section">
+
+            <div>
+                <p class="hero-item">Local Laundry Care</p>
+
+                <h1 class="hero-item">
+                    Laundry day, made simple.
+                </h1>
+
+                <p class="hero-item">
+                    More time for what matters.
+                    Let FreshFold handle your routine wash
+                    with simple, reliable, and affordable care.
+                </p>
+
+                <div class="hero-item">
+                    <a href="#contact" class="btn-primary">
+                        Book a Service
+                    </a>
+
+                    <a href="#services">
+                        View Services
+                    </a>
+                </div>
+
+                <div class="hero-item">
+                    <span>Careful handling</span>
+                    <span>Clear pricing</span>
+                    <span>Convenient service</span>
+                </div>
+
+                <button id="replayBtn" type="button">
+                    Replay Intro
+                </button>
+            </div>
+
+        </section>
+
+        <!-- E1: ABOUT SECTION -->
+        <section id="about" class="reveal">
+
+            <p class="section-label">About FreshFold</p>
+
+            <h2>We make everyday laundry easier.</h2>
+
+            <p>
+                FreshFold is a sample local laundry business
+                created to make clothing care more convenient
+                for students, workers, and families.
+            </p>
+
+            <div>
+                <article>
+                    <h3>🫧 Fresh Care</h3>
+                    <p>Thoughtful care for everyday clothing.</p>
+                </article>
+
+                <article>
+                    <h3>⏱️ More Time</h3>
+                    <p>Spend less time on laundry chores.</p>
+                </article>
+
+                <article>
+                    <h3>💧 Simple Service</h3>
+                    <p>Easy-to-understand service options.</p>
+                </article>
+
+                <article>
+                    <h3>🤝 Local Support</h3>
+                    <p>A convenient neighborhood solution.</p>
+                </article>
+            </div>
+
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="reveal">
+
+            <p class="section-label">What We Do</p>
+
+            <h2>Services for your everyday needs.</h2>
+
+            <div>
+
+                <article class="service-card">
+                    <h3>🫧 Wash Only</h3>
+                    <p>A simple wash service for everyday clothes.</p>
+                    <p>₱30 / kg</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>🌬️ Wash & Dry</h3>
+                    <p>Get clothes washed and dried for convenience.</p>
+                    <p>₱50 / kg</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>👕 Wash, Dry & Fold</h3>
+                    <p>Have your clothes washed, dried, and folded.</p>
+                    <p>₱60 / kg</p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- FEATURES / WORK SECTION -->
+        <section id="features" class="reveal">
+
+            <p class="section-label">Why FreshFold</p>
+
+            <h2>A better laundry experience.</h2>
+
+            <div>
+
+                <article>
+                    <h3>🧺 Laundry without the hassle</h3>
+                    <p>Convenient laundry services for your daily routine.</p>
+                </article>
+
+                <article>
+                    <h3>💰 Clear Pricing</h3>
+                    <p>Know your service prices before booking.</p>
+                </article>
+
+                <article>
+                    <h3>📅 Booking Request</h3>
+                    <p>Send your details through our contact form.</p>
+                </article>
+
+                <article>
+                    <h3>📱 Responsive Design</h3>
+                    <p>Browse on mobile, tablet, or computer.</p>
+                </article>
+
+                <article>
+                    <h3>🌙 Dark Mode</h3>
+                    <p>Switch between light and dark themes.</p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="reveal">
+
+            <p class="section-label">Get in Touch</p>
+
+            <h2>Let's make laundry easier.</h2>
+
+            <p>
+                Have a question about our services?
+                Send us a message.
+            </p>
+
+            <div>
+                <h3>📍 Location</h3>
+                <p>Your Local Area, Philippines</p>
+
+                <h3>🕒 Business Hours</h3>
+                <p>Monday–Saturday, 8:00 AM–7:00 PM</p>
+            </div>
+
+            <!-- CONTACT FORM -->
+            <form id="contactForm">
+
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name"
+                       placeholder="Enter your full name" required>
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email"
+                       placeholder="you@example.com" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message"
+                          rows="5" required></textarea>
+
+                <button type="submit">
+                    Send Message
+                </button>
+
+                <p id="formFeedback" class="hidden"
+                   role="status" aria-live="polite">
+                </p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <a href="#home">FreshFold.</a>
+
+        <p>Fresh clothes. Less stress.</p>
+
+        <p>
+            © <span id="year"></span>
+            FreshFold Laundry Co. School project.
+        </p>
+
+        <a href="#home">Back to top ↑</a>
+
+    </footer>
+
+    <!-- GSAP: LOAD FIRST -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+
+    <!-- SCROLLTRIGGER: LOAD SECOND -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+    <!-- YOUR JAVASCRIPT: LOAD LAST -->
+    <script src="script.js"></script>
+
+</body>
+</html>
